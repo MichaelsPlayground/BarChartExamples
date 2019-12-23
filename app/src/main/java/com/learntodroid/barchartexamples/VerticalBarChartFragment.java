@@ -26,7 +26,7 @@ public class VerticalBarChartFragment extends Fragment {
     private static final int MAX_X_VALUE = 7;
     private static final int MAX_Y_VALUE = 50;
     private static final int MIN_Y_VALUE = 5;
-    private static final String SET_LABEL = "App Downloads";
+    private static final String SET_LABEL = "Average Temperature";
     private static final String[] DAYS = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" };
 
     private BarChart chart;

@@ -31,7 +31,9 @@ public class GroupedBarChartFragment extends Fragment {
     private static final String GROUP_1_LABEL = "Group 1";
     private static final String GROUP_2_LABEL = "Group 2";
     private static final String GROUP_3_LABEL = "Group 3";
-    BarChart chart;
+    private static final float BAR_SPACE = 0.05f;
+    private static final float BAR_WIDTH = 0.2f;
+    private BarChart chart;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,14 +47,46 @@ public class GroupedBarChartFragment extends Fragment {
 
         chart = view.findViewById(R.id.fragment_groupedbarchart_chart);
 
+        BarData data = createChartData();
+        configureChartAppearance();
+        prepareChartData(data);
+
+        return view;
+    }
+
+    private void configureChartAppearance() {
+        chart.setPinchZoom(false);
+        chart.setDrawBarShadow(false);
+        chart.setDrawGridBackground(false);
+
+        chart.getDescription().setEnabled(false);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setGranularity(1f);
+        xAxis.setCenterAxisLabels(true);
+
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setSpaceTop(35f);
+        leftAxis.setAxisMinimum(0f);
+
+        chart.getAxisRight().setEnabled(false);
+
+        chart.getXAxis().setAxisMinimum(0);
+        chart.getXAxis().setAxisMaximum(MAX_X_VALUE);
+    }
+
+    private BarData createChartData() {
+        Util u = new Util();
+
         ArrayList<BarEntry> values1 = new ArrayList<>();
         ArrayList<BarEntry> values2 = new ArrayList<>();
         ArrayList<BarEntry> values3 = new ArrayList<>();
 
         for (int i = 0; i < MAX_X_VALUE; i++) {
-            values1.add(new BarEntry(i, Math.max(MIN_Y_VALUE, (float) Math.random() * (MAX_Y_VALUE + 1))));
-            values2.add(new BarEntry(i, Math.max(MIN_Y_VALUE, (float) Math.random() * (MAX_Y_VALUE + 1))));
-            values3.add(new BarEntry(i, Math.max(MIN_Y_VALUE, (float) Math.random() * (MAX_Y_VALUE + 1))));
+            values1.add(new BarEntry(i, u.randomFloatBetween(MIN_Y_VALUE, MAX_Y_VALUE)));
+            values2.add(new BarEntry(i, u.randomFloatBetween(MIN_Y_VALUE, MAX_Y_VALUE)));
+            values3.add(new BarEntry(i, u.randomFloatBetween(MIN_Y_VALUE, MAX_Y_VALUE)));
         }
 
         BarDataSet set1 = new BarDataSet(values1, GROUP_1_LABEL);
@@ -70,38 +104,17 @@ public class GroupedBarChartFragment extends Fragment {
 
         BarData data = new BarData(dataSets);
 
-        chart.setPinchZoom(false);
-        chart.setDrawBarShadow(false);
-        chart.setDrawGridBackground(false);
+        return data;
+    }
 
-        Description d = new Description();
-        d.setText("Grouped Bar Chart");
-        chart.setDescription(d);
-
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
-
-        YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setDrawGridLines(false);
-        leftAxis.setSpaceTop(35f);
-        leftAxis.setAxisMinimum(0f);
-
-        chart.getAxisRight().setEnabled(false);
-
-        float barSpace = 0.05f;
-        float barWidth = 0.2f;
-        float groupSpace = 1f - ((barSpace + barWidth) * GROUPS);
-
+    private void prepareChartData(BarData data) {
         chart.setData(data);
-        chart.getBarData().setBarWidth(barWidth);
 
-        chart.getXAxis().setAxisMinimum(0);
-        chart.getXAxis().setAxisMaximum(MAX_X_VALUE);
+        chart.getBarData().setBarWidth(BAR_WIDTH);
 
-        chart.groupBars(0, groupSpace, barSpace);
+        float groupSpace = 1f - ((BAR_SPACE + BAR_WIDTH) * GROUPS);
+        chart.groupBars(0, groupSpace, BAR_SPACE);
+
         chart.invalidate();
-
-        return view;
     }
 }

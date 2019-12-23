@@ -29,8 +29,8 @@ public class StackedBarChartFragment extends Fragment {
     private static final String STACK_1_LABEL = "Stack 1";
     private static final String STACK_2_LABEL = "Stack 2";
     private static final String STACK_3_LABEL = "Stack 3";
-    private static final String SET_LABEL = "Things Set";
-    BarChart chart;
+    private static final String SET_LABEL = "Set ABC";
+    private BarChart chart;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +44,30 @@ public class StackedBarChartFragment extends Fragment {
 
         chart = view.findViewById(R.id.fragment_stackedbarchart_chart);
 
+        BarData data = createChartData();
+        configureChartAppearance();
+        prepareChartData(data);
+
+        return view;
+    }
+
+    private void configureChartAppearance() {
+        chart.setDrawGridBackground(false);
+        chart.setDrawValueAboveBar(false);
+
+        chart.getDescription().setEnabled(false);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setGranularity(1f);
+
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+
+        YAxis rightAxis = chart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+    }
+
+    private BarData createChartData() {
         ArrayList<BarEntry> values = new ArrayList<>();
 
         for (int i = 0; i < MAX_X_VALUE; i++) {
@@ -63,28 +87,12 @@ public class StackedBarChartFragment extends Fragment {
 
         BarData data = new BarData(dataSets);
 
+        return data;
+    }
+
+    private void prepareChartData(BarData data) {
         data.setValueTextSize(12f);
-
-        chart.setDrawGridBackground(false);
-        chart.setDrawValueAboveBar(false);
-
-        Description d = new Description();
-        d.setText("Stacked Bar Chart");
-        chart.setDescription(d);
-
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setGranularity(1f);
-
-        YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setDrawGridLines(false);
-
-        YAxis rightAxis = chart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
-
-
         chart.setData(data);
         chart.invalidate();
-
-        return view;
     }
 }
