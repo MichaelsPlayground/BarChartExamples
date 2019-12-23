@@ -92,5 +92,6 @@ public class VerticalBarChartFragment extends Fragment {
     private void prepareChartData(BarData data) {
         data.setValueTextSize(12f);
         chart.setData(data);
+        chart.invalidate();
     }
 }
