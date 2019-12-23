@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Bar Chart Examples</string>
+    <string name="vertical_tab_name">Vertical Bar</string>
+    <string name="vertical_tab_cd">Vertical Bar Chart</string>
+    <string name="horizontal_tab_name">Horizontal Bar</string>
+    <string name="horizontal_tab_cd">Horizontal Bar Chart</string>
+    <string name="grouped_tab_name">Grouped Bar</string>
+    <string name="grouped_tab_cd">Grouped Bar Chart</string>
+    <string name="stacked_tab_name">Stacked Bar</string>
+    <string name="stacked_tab_cd">Stacked Bar Chart</string>
+</resources>

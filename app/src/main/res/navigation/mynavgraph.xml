@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mynavgraph"
+    app:startDestination="@id/verticalBarChart">
+
+    <fragment
+        android:id="@+id/verticalBarChart"
+        android:name="com.learntodroid.barchartexamples.VerticalBarChartFragment"
+        android:label="fragment_verticalbarchart"
+        tools:layout="@layout/fragment_verticalbarchart" />
+    <fragment
+        android:id="@+id/horizontalBarChart"
+        android:name="com.learntodroid.barchartexamples.HorizontalBarChartFragment"
+        android:label="fragment_horizontalbarchart"
+        tools:layout="@layout/fragment_horizontalbarchart" />
+    <fragment
+        android:id="@+id/groupedBarChart"
+        android:name="com.learntodroid.barchartexamples.GroupedBarChartFragment"
+        android:label="fragment_groupedbarchart"
+        tools:layout="@layout/fragment_groupedbarchart" />
+    <fragment
+        android:id="@+id/stackedBarChart"
+        android:name="com.learntodroid.barchartexamples.StackedBarChartFragment"
+        android:label="fragment_stackedbarchart"
+        tools:layout="@layout/fragment_stackedbarchart" />
+</navigation>
