@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -20,7 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class StackedBarChartFragment extends Fragment {
-    private static final int MAX_X_VALUE = 30;
+    private static final int MAX_X_VALUE = 5;
     private static final int MAX_Y_VALUE = 50;
     private static final int MIN_Y_VALUE = 5;
     private static final String STACK_1_LABEL = "Stack 1";
@@ -52,13 +55,32 @@ public class StackedBarChartFragment extends Fragment {
 
         BarDataSet set1 = new BarDataSet(values, SET_LABEL);
 
-        set1.setColors(ColorTemplate.MATERIAL_COLORS);
+        set1.setColors(new int[] {ColorTemplate.MATERIAL_COLORS[0], ColorTemplate.MATERIAL_COLORS[1], ColorTemplate.MATERIAL_COLORS[2]});
         set1.setStackLabels(new String[] {STACK_1_LABEL, STACK_2_LABEL, STACK_3_LABEL});
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
 
         BarData data = new BarData(dataSets);
+
+        data.setValueTextSize(12f);
+
+        chart.setDrawGridBackground(false);
+        chart.setDrawValueAboveBar(false);
+
+        Description d = new Description();
+        d.setText("Stacked Bar Chart");
+        chart.setDescription(d);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setGranularity(1f);
+
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+
+        YAxis rightAxis = chart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+
 
         chart.setData(data);
         chart.invalidate();

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -49,6 +50,10 @@ public class VerticalBarChartFragment extends Fragment {
         dataSets.add(set1);
 
         BarData data = new BarData(dataSets);
+
+        Description d = new Description();
+        d.setText("Vertical Bar Chart");
+        chart.setDescription(d);
 
         chart.setData(data);
 

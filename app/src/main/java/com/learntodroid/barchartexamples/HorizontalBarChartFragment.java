@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -47,6 +48,10 @@ public class HorizontalBarChartFragment extends Fragment {
         dataSets.add(set1);
 
         BarData data = new BarData(dataSets);
+
+        Description d = new Description();
+        d.setText("Horizontal Bar Chart");
+        chart.setDescription(d);
 
         chart.setData(data);
 

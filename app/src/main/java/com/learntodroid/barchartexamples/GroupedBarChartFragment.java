@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -72,6 +73,10 @@ public class GroupedBarChartFragment extends Fragment {
         chart.setPinchZoom(false);
         chart.setDrawBarShadow(false);
         chart.setDrawGridBackground(false);
+
+        Description d = new Description();
+        d.setText("Grouped Bar Chart");
+        chart.setDescription(d);
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setGranularity(1f);
