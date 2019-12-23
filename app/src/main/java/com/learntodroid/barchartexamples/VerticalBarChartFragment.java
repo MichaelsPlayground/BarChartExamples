@@ -64,9 +64,11 @@ public class VerticalBarChartFragment extends Fragment {
 
         YAxis axisLeft = chart.getAxisLeft();
         axisLeft.setGranularity(10f);
+        axisLeft.setAxisMinimum(0);
 
         YAxis axisRight = chart.getAxisRight();
         axisRight.setGranularity(10f);
+        axisRight.setAxisMinimum(0);
     }
 
     private BarData createChartData() {
